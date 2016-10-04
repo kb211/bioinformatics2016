@@ -1,0 +1,44 @@
+Received option CV=False, so I'm training using all of the data
+running AdaBoost, order 2 for final
+MKL not available, so I'm not adjusting the number of threads
+Launching 4 jobs with 1 MKL threads each
+Loaded 64 samples for gene HPRT1 	total number of samples: 64
+Loaded 149 samples for gene CCDC101 	total number of samples: 213
+Loaded 924 samples for gene MED12 	total number of samples: 1137
+Loaded 190 samples for gene TADA2B 	total number of samples: 1327
+Loaded 109 samples for gene TADA1 	total number of samples: 1436
+Loaded 154 samples for gene CUL3 	total number of samples: 1590
+Loaded 736 samples for gene NF1 	total number of samples: 2326
+Loaded 223 samples for gene NF2 	total number of samples: 2549
+Loaded 924 samples for gene MED12 	total number of samples: 3473
+range of y_all is [0.001082, 1.000000]
+filename = V3AdaBoostRegressor.order2score_drug_gene_rank.gene.spearman
+Cross-validating genes...
+using multiprocessing with 1 procs--one for each fold
+working on fold 0 of 1, with 5304 train and 5304 test
+		median spearmanr across gene folds: 0.668
+		Elapsed time for cv is 28.58 seconds
+Received option CV=False, so I'm training using all of the data
+running AdaBoost, order 2 for final
+MKL not available, so I'm not adjusting the number of threads
+Launching 4 jobs with 1 MKL threads each
+Loaded 64 samples for gene HPRT1 	total number of samples: 64
+Loaded 149 samples for gene CCDC101 	total number of samples: 213
+Loaded 924 samples for gene MED12 	total number of samples: 1137
+Loaded 190 samples for gene TADA2B 	total number of samples: 1327
+Loaded 109 samples for gene TADA1 	total number of samples: 1436
+Loaded 154 samples for gene CUL3 	total number of samples: 1590
+Loaded 736 samples for gene NF1 	total number of samples: 2326
+Loaded 223 samples for gene NF2 	total number of samples: 2549
+Loaded 924 samples for gene MED12 	total number of samples: 3473
+range of y_all is [0.001082, 1.000000]
+filename = V3AdaBoostRegressor.order2score_drug_gene_rank.gene.spearman
+Cross-validating genes...
+using multiprocessing with 1 procs--one for each fold
+working on fold 0 of 1, with 5304 train and 5304 test
+		median spearmanr across gene folds: 0.710
+		Elapsed time for cv is 25.89 seconds
+
+model_comparison.predict(np.array(['CAGAAAAAAAAACACTGCAACAAGAGGGTA']), np.array([360.0]), np.array([72.87]))
+No model file specified, using V3_model_full
+array([ 0.50806356])
