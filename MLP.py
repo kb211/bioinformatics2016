@@ -23,8 +23,9 @@ class MLPC:
     def train(self, X, Y):
         self.X = X
         self.Y = Y
-        early_stopping = EarlyStopping(monitor='val_loss', patience=2)
-        self.model.fit(self.X,self.Y, verbose=0, nb_epoch=20, validation_split=0.2, callbacks=[early_stopping])
+        #early_stopping = EarlyStopping(monitor='val_loss', patience=2)
+        #self.model.fit(self.X,self.Y, verbose=0, nb_epoch=20, validation_split=0.2, callbacks=[early_stopping])
+        self.model.fit(self.X,self.Y, verbose=0, nb_epoch=10)
     
     def test(self, X, Y):
         score = self.model.evaluate(X, Y, batch_size=20)
