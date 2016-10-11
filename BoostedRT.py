@@ -1,5 +1,5 @@
 import sklearn.tree as tree
-
+import os
 class BoostedRT:
 
     def __init__(self, loadModel=False):
@@ -15,7 +15,6 @@ class BoostedRT:
     def train(self, X, Y):
         self.X = X
         self.Y = Y
-
         self.model.fit(self.X,self.Y)
     
     def test(self, X, Y):
@@ -33,6 +32,6 @@ class BoostedRT:
         
     def load(self):
         from sklearn.externals import joblib
-        path = os.path.dirname(os.path.abspath(__file__)) + '/picklefiles/BoosterdRT.pkl'
+        path = os.path.dirname(os.path.abspath(__file__)) + '/picklefiles/BoostedRT.pkl'
         self.model = joblib.load(path)
         return self.model

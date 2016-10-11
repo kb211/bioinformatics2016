@@ -24,7 +24,7 @@ class MLPC:
         self.X = X
         self.Y = Y
         early_stopping = EarlyStopping(monitor='val_loss', patience=2)
-        self.model.fit(self.X,self.Y, verbose=2, nb_epoch=20, validation_split=0.2, callbacks=[early_stopping])
+        self.model.fit(self.X,self.Y, verbose=0, nb_epoch=20, validation_split=0.2, callbacks=[early_stopping])
     
     def test(self, X, Y):
         score = self.model.evaluate(X, Y, batch_size=20)
@@ -32,9 +32,9 @@ class MLPC:
         
 
     def predict(self, X):
-        proba = self.model.predict_proba(X)
+        #proba = self.model.predict_proba(X)
         Z = self.model.predict(X)
-        return Z, proba       
+        return Z      
 
     def save(self):
         from sklearn.externals import joblib
