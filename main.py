@@ -48,12 +48,21 @@ def setup_x_validation(X, Y, gene_labels):
         print "working on fold %d of %d, with %d train and %d test" % (i, len(cv), len(train), len(test))
         x_train = []
         y_train = []
+        x_test = []
+        y_test = []
         for index in train:
             x_train.append(X[index])
             y_train.append(Y[index])
         MLP = MLPC()
-        job = MLP.train(x_train, y_train)
-        jobs.append(job)
+        MLP.train(x_train, y_train)
+        
+        for index in test:
+            x_test.append(X[index])
+            y_test.append(Y[index])
+        Z = MLP.predict(x_test, y_test)
+        
+        jobs.append(MLP)
+        
     
 if __name__ == "__main__":
     main(sys.argv[1:])
