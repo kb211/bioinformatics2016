@@ -15,13 +15,23 @@ def main(argv):
     
     #normailizing data
     X_norm = normalize(X)
-  
-    print "Cross-validating genes..."
-    score_Tree, mse_Tree = setup_x_validation("BoostedRT", X, Y, gene_labels)
-    score_nn, mse_nn = setup_x_validation("neuralnet", X_norm, Y, gene_labels)
+    layer_sizes = np.arange(50,600, 50)
+    with open("Output.txt", "w") as text_file:
     
-    print "Spearman correlation Boosted trees: ", score_Tree
-    print "Spearman correlation Neural network: ", score_nn
+        print "Cross-validating boosted regression trees.."
+        for i in range(0, 10):
+            score_Tree, std_Tree = setup_x_validation("BoostedRT", X, Y, gene_labels)
+            text_file.write("\nAverage spearman correlation of boosted regression trees: %f" % score_Tree)
+            text_file.write("Standard deviation of spearman correlation: %f" % std_Tree)
+        
+        print "\nCross-validating neural networks.."
+        for size in layer_sizes:
+            score_nn, std_nn = setup_x_validation("neuralnet", X_norm, Y, gene_labels, size)
+            
+            text_file.write("\nAverage spearman correlation of neural network with %d layers: %f" % (size, score_nn))
+            text_file.write("Standard deviation of spearman correlation: %f" % (std_nn))
+        
+    
 
 
 def normalize(data):
@@ -38,7 +48,7 @@ def normalize(data):
     data = data.tolist()
     return data
 
-def setup_x_validation(model_type, X, Y, gene_labels):
+def setup_x_validation(model_type, X, Y, gene_labels, size=0):
     n_folds=17
     label_encoder = sklearn.preprocessing.LabelEncoder()
     label_encoder.fit(gene_labels)
@@ -54,7 +64,7 @@ def setup_x_validation(model_type, X, Y, gene_labels):
     
     for i,fold in enumerate(cv):
         train,test = fold
-        print "\n working on fold %d of %d, with %d train and %d test" % (i, len(cv), len(train), len(test))
+        #print "\n working on fold %d of %d, with %d train and %d test" % (i, len(cv), len(train), len(test))
         x_train = []
         y_train = []
         x_test = []
@@ -63,7 +73,7 @@ def setup_x_validation(model_type, X, Y, gene_labels):
             x_train.append(X[index])
             y_train.append(Y[index])
         if model_type == "neuralnet":
-            model[i] = MLPC()
+            model[i] = MLPC(layer_size=size)
         elif model_type == "BoostedRT":
             model[i] = BoostedRT()
         else:
@@ -80,12 +90,10 @@ def setup_x_validation(model_type, X, Y, gene_labels):
         r, p = util.spearmanr_nonan(Z , y_test)
         scores.append(r)
         
-        mse_score = model[i].test(x_test, y_test)
-        mse_scores.append(mse_score)
-        
-    final_mse = np.array(mse_scores).sum()/len(mse_scores)
-    finalscore = np.array(scores).sum()/len(scores)
-    return finalscore, final_mse
+    final_score = np.array(scores).sum()/len(scores)
+    final_std = np.std(np.array(scores))
+    
+    return final_score, final_std
     
 if __name__ == "__main__":
     main(sys.argv[1:])

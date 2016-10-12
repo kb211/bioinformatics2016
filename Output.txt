@@ -1,0 +1,42 @@
+Average spearman correlation of boosted regression trees: 0.523589
+Standard deviation of spearman correlation: 0.039789
+Average spearman correlation of boosted regression trees: 0.512671
+Standard deviation of spearman correlation: 0.036525
+Average spearman correlation of boosted regression trees: 0.502513
+Standard deviation of spearman correlation: 0.050299
+Average spearman correlation of boosted regression trees: 0.513803
+Standard deviation of spearman correlation: 0.040914
+Average spearman correlation of boosted regression trees: 0.491643
+Standard deviation of spearman correlation: 0.050827
+Average spearman correlation of boosted regression trees: 0.516923
+Standard deviation of spearman correlation: 0.053127
+Average spearman correlation of boosted regression trees: 0.496023
+Standard deviation of spearman correlation: 0.049799
+Average spearman correlation of boosted regression trees: 0.498399
+Standard deviation of spearman correlation: 0.038714
+Average spearman correlation of boosted regression trees: 0.489134
+Standard deviation of spearman correlation: 0.047422
+Average spearman correlation of boosted regression trees: 0.496647
+Standard deviation of spearman correlation: 0.050251
+Average spearman correlation of neural network with 50 layers: 0.585058
+Standard deviation of spearman correlation: 0.040900
+Average spearman correlation of neural network with 100 layers: 0.608415
+Standard deviation of spearman correlation: 0.035950
+Average spearman correlation of neural network with 150 layers: 0.619787
+Standard deviation of spearman correlation: 0.038668
+Average spearman correlation of neural network with 200 layers: 0.628395
+Standard deviation of spearman correlation: 0.038235
+Average spearman correlation of neural network with 250 layers: 0.625820
+Standard deviation of spearman correlation: 0.041576
+Average spearman correlation of neural network with 300 layers: 0.629752
+Standard deviation of spearman correlation: 0.036570
+Average spearman correlation of neural network with 350 layers: 0.641414
+Standard deviation of spearman correlation: 0.036792
+Average spearman correlation of neural network with 400 layers: 0.641526
+Standard deviation of spearman correlation: 0.035890
+Average spearman correlation of neural network with 450 layers: 0.641119
+Standard deviation of spearman correlation: 0.036534
+Average spearman correlation of neural network with 500 layers: 0.640032
+Standard deviation of spearman correlation: 0.040101
+Average spearman correlation of neural network with 550 layers: 0.637033
+Standard deviation of spearman correlation: 0.031264

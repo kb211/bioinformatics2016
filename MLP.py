@@ -6,7 +6,7 @@ import sklearn
 from keras.callbacks import EarlyStopping
 class MLPC:
 
-    def __init__(self, loadModel=False):
+    def __init__(self, layer_size=400, loadModel=False):
         
         self.loadModel = loadModel
         if self.loadModel:
@@ -15,7 +15,7 @@ class MLPC:
            self.model = joblib.load(path)
         else:
             self.model = Sequential()
-            self.model.add(Dense(400, input_dim=631, activation='relu'))
+            self.model.add(Dense(layer_size, input_dim=631, activation='relu'))
             #self.model.add(Dense(8))
             self.model.add(Dense(1))
             self.model.compile(optimizer='adam', loss='mse')
