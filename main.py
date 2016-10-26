@@ -2,6 +2,7 @@ from readFile import readFile
 import sys
 from MLP import MLPC
 from BoostedRT import BoostedRT
+from random_forrest import random_forrest
 import numpy as np
 import sklearn
 import sklearn.metrics
@@ -11,17 +12,26 @@ import util
 def main(argv):
 
     rf = readFile()
-    X, Y, gene_labels = rf.splitTarget()
+    X, Y, gene_labels = rf.splitTarget2()
     
     #normailizing data
     X_norm = normalize(X)
+    
     layer_sizes = np.arange(50,600, 50)
     with open("Output.txt", "w") as text_file:
-    
+        
+        print "Cross-validating random forrest regressor.."
+        for i in range(0, 10):
+            score_RF, std_RF = setup_x_validation("random forrest", X, Y, gene_labels)
+            text_file.write("\nAverage spearman correlation of random forrest: %f" % score_RF)
+            print "\nAverage spearman correlation of random forrest: %f" % score_RF
+            text_file.write("Standard deviation of spearman correlation: %f" % std_RF)
+
         print "Cross-validating boosted regression trees.."
         for i in range(0, 10):
             score_Tree, std_Tree = setup_x_validation("BoostedRT", X, Y, gene_labels)
             text_file.write("\nAverage spearman correlation of boosted regression trees: %f" % score_Tree)
+            print "\nAverage spearman correlation of boosted regression trees: %f" % score_Tree
             text_file.write("Standard deviation of spearman correlation: %f" % std_Tree)
         
         print "\nCross-validating neural networks.."
@@ -64,7 +74,7 @@ def setup_x_validation(model_type, X, Y, gene_labels, size=0):
     
     for i,fold in enumerate(cv):
         train,test = fold
-        #print "\n working on fold %d of %d, with %d train and %d test" % (i, len(cv), len(train), len(test))
+        print "\n working on fold %d of %d, with %d train and %d test" % (i, len(cv), len(train), len(test))
         x_train = []
         y_train = []
         x_test = []
@@ -76,6 +86,8 @@ def setup_x_validation(model_type, X, Y, gene_labels, size=0):
             model[i] = MLPC(layer_size=size)
         elif model_type == "BoostedRT":
             model[i] = BoostedRT()
+        elif model_type == "random forrest":
+            model[i] = random_forrest()
         else:
             print "No model specified"
             break
